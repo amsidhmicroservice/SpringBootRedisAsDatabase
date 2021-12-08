@@ -24,14 +24,14 @@ public class PersonController {
 	}
 
 	@GetMapping("/{personId}")
-	@Cacheable(key = "#personId", value = "Person", unless = "#result.id >2")
+	@Cacheable(value = "person", unless = "#result.id >2")
 	public Person findPersonById(@PathVariable("personId") Integer personId) {
 	    log.info("Inside findPersonById method of PersonController");
 		return personService.findPersonById(personId);
 	}
 
 	@DeleteMapping("/{personId}")
-	@CacheEvict(key = "#personId", value = "Person")
+	@CacheEvict(value = "person")
 	public String deletePersonById(@PathVariable("personId") Integer personId) {
 		return personService.deletePersonById(personId);
 	}
