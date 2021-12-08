@@ -17,9 +17,18 @@ public class RedisConfig {
 	@Value("${spring.redis.port:6379}")
 	private Integer portNumber;
 
+	@Value("${spring.redis.username}")
+	private String username;
+
+	@Value("${spring.redis.password}")
+	private String password;
+
+
 	@Bean
 	public JedisConnectionFactory getJedisConnectionFactory() {
 		RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(hostName, portNumber);
+		config.setUsername(username);
+		config.setPassword(password);
 		return new JedisConnectionFactory(config);
 	}
 
