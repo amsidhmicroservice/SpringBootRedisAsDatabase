@@ -8,6 +8,7 @@ spring:
     type: REDIS
     redis:
       enable-statistics: true
-      time-to-live: 60000ms
+      time-to-live: 60
       use-key-prefix: true
       cache-null-values: true
+
