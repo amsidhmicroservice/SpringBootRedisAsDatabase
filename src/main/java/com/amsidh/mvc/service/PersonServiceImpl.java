@@ -1,13 +1,11 @@
 package com.amsidh.mvc.service;
 
-import java.util.List;
-
+import com.amsidh.mvc.entity.Person;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.amsidh.mvc.entity.Person;
-
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -35,7 +33,7 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public String deletePersonById(Integer personId) {
 		redisTemplate.opsForHash().delete(HASH_KEY, personId);
-		return String.format("Person with id {} deleted successfully", personId);
+		return String.format("Person with id %d deleted successfully", personId);
 	}
 
 }
