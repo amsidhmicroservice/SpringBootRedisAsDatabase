@@ -1,6 +1,7 @@
 package com.amsidh.mvc.config;
 
 import com.amsidh.mvc.consumer.PersonConsumer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
@@ -14,9 +15,14 @@ import org.springframework.data.redis.serializer.*;
 @Configuration
 public class RedisConfig {
 
+	@Value("${spring.redis.host:localhost}")
+	private String hostName;
+	@Value("${spring.redis.port:6379}")
+	private Integer portNumber;
+
 	@Bean
 	public JedisConnectionFactory getJedisConnectionFactory() {
-		RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("localhost", 6379);
+		RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(hostName, portNumber);
 		return new JedisConnectionFactory(config);
 	}
 
